@@ -9,7 +9,10 @@ DEFCONFIG_GEN := $(CONFIG_SRC:%.config=%_defconfig)
 DEFCONFIG_SRC := $(filter-out $(DEFCONFIG_GEN),$(wildcard */*/*_defconfig))
 CONFIG_GEN := $(DEFCONFIG_SRC:%_defconfig=%.config)
 
-ALL_GEN := $(DEFCONFIG_GEN) $(CONFIG_GEN)
+VERSIONS := $(wildcard [4-9].*)
+ALL_ENABLED := $(patsubst %,%/all-enabled,$(VERSIONS))
+
+ALL_GEN := $(DEFCONFIG_GEN) $(CONFIG_GEN) $(ALL_ENABLED)
 
 all : $(ALL_GEN)
 clean :
@@ -34,3 +37,12 @@ $(CONFIG_GEN) : %.config : %_defconfig
 	cd $(KSRC) && $(MAKE) ARCH=$(ARCH) temp_defconfig
 	cd $(KSRC) && rm -f $(KSRC)/arch/$(ARCH)/configs/temp_defconfig
 	mv $(KSRC)/.config $@
+
+%/all-enabled : export LC_ALL := C
+# Can't use $* to select dependencies, as automatic variables are not
+# defined until the recipe runs
+$(foreach version,$(VERSIONS),\
+$(version)/all-enabled : $(filter $(version)/%,$(CONFIG_SRC) $(CONFIG_GEN))\
+)
+%/all-enabled :
+	sed -rn 's/(.*)=[ym]/\1/p' $^ | sort -u > $@

@@ -39,10 +39,12 @@ $(CONFIG_GEN) : %.config : %_defconfig
 	mv $(KSRC)/.config $@
 
 %/all-enabled : export LC_ALL := C
+%/all-enabled : VERSION = $*
 # Can't use $* to select dependencies, as automatic variables are not
 # defined until the recipe runs
 $(foreach version,$(VERSIONS),\
 $(version)/all-enabled : $(filter $(version)/%,$(CONFIG_SRC) $(CONFIG_GEN))\
 )
 %/all-enabled :
-	sed -rn 's/(.*)=[ym]/\1/p' $^ | sort -u > $@
+	cd $(KSRC) && git checkout linux-$(VERSION).y-cip
+	scripts/kconfig_annotate.py $(KSRC) $^ > $@

@@ -36,7 +36,18 @@ def parse_menu(root, filename, files_parsed, symbol_map):
             elif keyword == 'help':
                 help_indent = indent
             elif keyword in ['config', 'menuconfig']:
-                symbol_map[(rest.strip(), arch)] = filename
+                symbol = rest.strip()
+                # Assume not interactively configurable until we find a prompt
+                symbol_map[(symbol, arch)] = (filename, False)
+            elif keyword == 'choice':
+                symbol = None
+            elif (keyword in ['bool', 'tristate', 'string', 'int',
+                              'def_bool', 'def_tristate',
+                              'prompt'] and
+                  rest and rest[0] in '\'"'):
+                if symbol:
+                    # Mark the symbol as interactive
+                    symbol_map[(symbol, arch)] = (filename, True)
 
     files_parsed.add(filename)
 
@@ -57,11 +68,15 @@ def main(ksrc, *kconfigs):
                 match = KCONFIG_ENABLE_RE.match(line)
                 if match:
                     symbol = match.group(1)
-                    menu = symbol_map.get((symbol, None)) or symbol_map.get((symbol, arch))
+                    menu, interactive = (symbol_map.get((symbol, None)) or
+                                         symbol_map.get((symbol, arch),
+                                                        (None, False)))
                     if not menu:
                         print('W: could not find %s' % symbol, file=sys.stderr)
                         menu = '<unknown>'
-                    enabled_map.setdefault(menu, set()).add(symbol)
+                        interactive = True  # don't know, but assume it is
+                    if interactive:
+                        enabled_map.setdefault(menu, set()).add(symbol)
 
     for menu in sorted(enabled_map.keys()):
         print('[%s]' % menu)

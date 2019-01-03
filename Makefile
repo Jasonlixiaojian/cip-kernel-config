@@ -43,7 +43,7 @@ $(CONFIG_GEN) : %.config : %_defconfig
 # Can't use $* to select dependencies, as automatic variables are not
 # defined until the recipe runs
 $(foreach version,$(VERSIONS),\
-$(version)/all-enabled : $(filter $(version)/%,$(CONFIG_SRC) $(CONFIG_GEN))\
+$(eval $(version)/all-enabled : $(filter $(version)/%,$(CONFIG_SRC) $(CONFIG_GEN)))\
 )
 %/all-enabled :
 	cd $(KSRC) && git checkout linux-$(VERSION).y-cip

@@ -71,8 +71,7 @@ def main(ksrc, *kconfigs):
             files_parsed = set()
         last_env = env
 
-        top_menu = os.path.join('arch', arch, 'Kconfig')
-        parse_menu(env, ksrc, top_menu, files_parsed, symbol_map)
+        parse_menu(env, ksrc, 'Kconfig', files_parsed, symbol_map)
 
         with open(kconfig) as f:
             for line in f:

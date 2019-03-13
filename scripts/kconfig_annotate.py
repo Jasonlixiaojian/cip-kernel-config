@@ -9,8 +9,9 @@ import sys
 
 MENU_NAME_RE = re.compile(r'^arch/([^/]+)/')
 MENU_LINE_RE = re.compile(r'^(\s*)(?:(?:--+\s*)?(\w+)(?:\s*--+)?(?:\s+(.*))?)?')
+VAR_REF_RE = re.compile(r'\$(?:\(([^\)]+)\)|([\w\-]+))')
 
-def parse_menu(root, filename, files_parsed, symbol_map):
+def parse_menu(env, root, filename, files_parsed, symbol_map):
     if filename in files_parsed:
         return
 
@@ -32,7 +33,10 @@ def parse_menu(root, filename, files_parsed, symbol_map):
             keyword, rest = match.group(2, 3)
             help_indent = None
             if keyword == 'source':
-                parse_menu(root, rest.strip('"'), files_parsed, symbol_map)
+                new_filename = VAR_REF_RE.sub(
+                    lambda match: env[match.group(1) or match.group(2)],
+                    rest.strip('"'))
+                parse_menu(env, root, new_filename, files_parsed, symbol_map)
             elif keyword == 'help':
                 help_indent = indent
             elif keyword in ['config', 'menuconfig']:
@@ -54,14 +58,21 @@ def parse_menu(root, filename, files_parsed, symbol_map):
 KCONFIG_ENABLE_RE = re.compile(r'^CONFIG_(\w+)=[ym]')
 
 def main(ksrc, *kconfigs):
-    files_parsed = set()
     symbol_map = {}
     enabled_map = {}
+    last_env = None
 
     for kconfig in kconfigs:
         arch = kconfig.split(os.sep)[1]
+        env = {'SRCARCH': arch}
+
+        # Flush kconfig cache if we change the environment
+        if env != last_env:
+            files_parsed = set()
+        last_env = env
+
         top_menu = os.path.join('arch', arch, 'Kconfig')
-        parse_menu(ksrc, top_menu, files_parsed, symbol_map)
+        parse_menu(env, ksrc, top_menu, files_parsed, symbol_map)
 
         with open(kconfig) as f:
             for line in f:

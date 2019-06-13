@@ -20,13 +20,15 @@ clean :
 	rm -f $(ALL_GEN)
 .PHONY : all clean
 
+CROSS_COMPILE = $(shell scripts/cross-compile-prefix $(ARCH) $<)
+
 # Convert full .config to defconfig
 %_defconfig : VERSION = $(word 1,$(subst /, ,$@))
 %_defconfig : ARCH = $(word 2,$(subst /, ,$@))
 $(DEFCONFIG_GEN) : %_defconfig : %.config
 	cd $(KSRC) && git checkout linux-$(VERSION).y-cip
 	cp $< $(KSRC)/.config
-	cd $(KSRC) && $(MAKE) ARCH=$(ARCH) savedefconfig
+	cd $(KSRC) && $(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) savedefconfig
 	mv $(KSRC)/defconfig $@
 
 # Convert defconfig to full .config
@@ -35,7 +37,7 @@ $(DEFCONFIG_GEN) : %_defconfig : %.config
 $(CONFIG_GEN) : %.config : %_defconfig
 	cd $(KSRC) && git checkout linux-$(VERSION).y-cip
 	cp $< $(KSRC)/arch/$(ARCH)/configs/temp_defconfig
-	cd $(KSRC) && $(MAKE) ARCH=$(ARCH) temp_defconfig
+	cd $(KSRC) && $(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) temp_defconfig
 	cd $(KSRC) && rm -f $(KSRC)/arch/$(ARCH)/configs/temp_defconfig
 	mv $(KSRC)/.config $@
 

@@ -54,7 +54,7 @@ $(CONFIG_GEN) : %.config : %_defconfig
 %.sources : ARCH = $(word 2,$(subst /, ,$@))
 $(SOURCES_GEN) : %.sources : %.config
 	cd $(KSRC) && git checkout linux-$(VERSION).y-cip
-	scripts/get_used_sources.py $(KSRC) $< \
+	+scripts/get_used_sources.py $(KSRC) $< $(MFLAGS) \
 		ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) > $@ \
 		|| { rm -f $@ ; exit 1; }
 

@@ -105,7 +105,7 @@ def find_c_asm_sources(source_dir, kconfig, *makeflags):
     # Clean source tree.  Redirect stdout to our stderr, so that it
     # doesn't interfere with our own output.
     subprocess.run(['make'] + list(makeflags) + ['mrproper'],
-                   cwd=source_dir, stdout=sys.stderr, check=True)
+                   cwd=source_dir, stdout=sys.stderr, close_fds=False, check=True)
 
     # Parse make arguments
     make_var_re = re.compile(r'^(\w[\w\-]+)=(.*)$', re.DOTALL)
@@ -147,10 +147,10 @@ def find_c_asm_sources(source_dir, kconfig, *makeflags):
         # our own output
         subprocess.run(['make'] + makeflags + ['oldconfig'],
                        cwd=source_dir, env=env, stdin=subprocess.DEVNULL,
-                       stdout=sys.stderr, check=True)
+                       stdout=sys.stderr, close_fds=False, check=True)
         subprocess.run(['make'] + makeflags,
                        cwd=source_dir, env=env, stdin=subprocess.DEVNULL,
-                       stdout=sys.stderr, check=True)
+                       stdout=sys.stderr, close_fds=False, check=True)
 
         make_deps_re = re.compile(r'^(?:[^\s:]+::?)?\s*(.*?)\s*\\?\n')
 

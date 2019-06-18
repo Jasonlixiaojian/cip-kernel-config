@@ -49,3 +49,5 @@ $(eval $(version)/all-enabled : $(filter $(version)/%,$(CONFIG_SRC) $(CONFIG_GEN
 %/all-enabled :
 	cd $(KSRC) && git checkout linux-$(VERSION).y-cip
 	scripts/kconfig_annotate.py $(KSRC) $^ > $@
+
+.NOTPARALLEL:

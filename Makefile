@@ -13,7 +13,7 @@ CONFIG_GEN := $(DEFCONFIG_SRC:%_defconfig=%.config)
 VERSIONS := $(wildcard [4-9].*)
 ALL_ENABLED := $(patsubst %,%/all-enabled,$(VERSIONS))
 
-ALL_GEN := $(DEFCONFIG_GEN) $(CONFIG_GEN) $(ALL_ENABLED)
+ALL_GEN := $(sort $(DEFCONFIG_GEN) $(CONFIG_GEN) $(ALL_ENABLED))
 
 all : $(ALL_GEN)
 clean :

@@ -19,6 +19,84 @@ import tempfile
 arch_re = re.compile(r'^arch/([^/]+)/.')
 
 
+def copy_config(kconfig, build_dir, source_dir):
+    # We don't copy the config exactly as-is, but remove references
+    # to any missing files.
+
+    string_set_re = re.compile(r'^(CONFIG_(?:\w+))="(.*)"$')
+    xfile_sym_types = {
+        # symbol                               multi-value?  directory symbol
+        'CONFIG_MODULE_SIG_KEY':              (False,        None),
+        'CONFIG_SYSTEM_TRUSTED_KEYS':         (False,        None),
+        'CONFIG_SYSTEM_BLACKLIST_HASH_LIST':  (False,        None),
+        'CONFIG_ACPI_CUSTOM_DSDT_FILE':       (False,        None),
+        'CONFIG_EXTRA_FIRMWARE':              (True,  'CONFIG_EXTRA_FIRMWARE_DIR'),
+        'CONFIG_EXTRA_FIRMWARE_DIR':          (False,        None),
+        'CONFIG_CFG80211_EXTRA_REGDB_KEYDIR': (False,        None),
+        'CONFIG_INITRAMFS_SOURCE':            (True,         None)
+        }
+    xfile_sym_values = {}
+
+    # We have to do two passes over the file because we need to see
+    # the value of CONFIG_EXTRA_FIRMWARE_DIR before validating
+    # CONFIG_EXTRA_FIRMWARE
+
+    # Extract all filenames
+    with open(kconfig) as f_in:
+        for line in f_in:
+            match = string_set_re.search(line)
+            if not match:
+                continue
+            name, value = match.group(1, 2)
+            try:
+                multi, _ = xfile_sym_types[name]
+            except KeyError:
+                continue
+            if multi:
+                xfile_sym_values[name] = value.split()
+            else:
+                xfile_sym_values[name] = [value]
+
+    # Remove references to missing files
+    for name, filenames in xfile_sym_values.items():
+        if not filenames:
+            # If CONFIG_EXTRA_FIRMWARE is empty, CONFIG_EXTRA_FIRMWARE_DIR
+            # will not even be present in the config file and we must
+            # avoid looking it up.  In any case, we never need to modify
+            # an empty value.
+            continue
+
+        _, dir_sym_name = xfile_sym_types[name]
+        if dir_sym_name:
+            base_dir = os.path.join(source_dir, xfile_sym_values[dir_sym_name][0])
+        else:
+            base_dir = source_dir
+        new_filenames = []
+        for filename in filenames:
+            if name == 'CONFIG_MODULE_SIG_KEY' \
+               and filename == 'certs/signing_key.pem':
+                # Special case: this file is automatically created
+                new_filenames.append(filename)
+            elif os.path.exists(os.path.join(base_dir, filename)):
+                new_filenames.append(filename)
+            else:
+                print('W: Removing missing file "%s" from value of %s'
+                      % (filename, name),
+                      file=sys.stderr)
+        xfile_sym_values[name] = new_filenames
+
+    # Copy file, replacing values as necessary
+    with open(kconfig) as f_in, \
+         open(os.path.join(build_dir, '.config'), 'w') as f_out:
+        for line in f_in:
+            match = string_set_re.search(line)
+            if match:
+                name, _ = match.group(1, 2)
+                if name in xfile_sym_values:
+                    line = '%s="%s"\n' % (name, ' '.join(xfile_sym_values[name]))
+            f_out.write(line)
+
+
 def find_c_asm_sources(source_dir, kconfig, *makeflags):
     source_dir_abs = os.path.abspath(source_dir)
 
@@ -63,8 +141,7 @@ def find_c_asm_sources(source_dir, kconfig, *makeflags):
         # Regenerate make arguments
         makeflags = make_opts + ['%s=%s' % item for item in make_vars.items()]
 
-        # Copy .config file
-        shutil.copyfile(kconfig, os.path.join(build_dir, '.config'))
+        copy_config(kconfig, build_dir, source_dir)
 
         # Redirect stdout to our stderr, so that it doesn't interfere with
         # our own output

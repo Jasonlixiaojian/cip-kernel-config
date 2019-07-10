@@ -1,0 +1,95 @@
+#!/bin/sh -eu
+
+# Copyright 2019 Codethink Ltd.
+#
+# This script is distributed under the terms and conditions of the GNU General
+# Public License, Version 3 or later. See http://www.gnu.org/copyleft/gpl.html
+# for details.
+
+# Prints a suitable cross-compiler prefix for the given kernel source
+# architecture and config file
+
+srcarch="$1"
+kconfig="$2"  # may be a full .config or defconfig file
+
+buildmach="$(uname -m)"
+
+try() {
+    if command >/dev/null -v "${1}${CC:-gcc}"; then
+	echo "$1"
+	exit 0
+    fi
+}
+
+# We must only check for non-default config values in the kconfig
+# file, as default values are omitted from defconfig files.
+
+case "$srcarch" in
+    arm)
+	# Use any ARM EABI toolchain, whether it's configured for
+	# hard-float or soft-float by default
+	try arm-linux-gnueabihf-
+	try arm-linux-gnueabi-
+	case "$buildmach" in
+	    arm*)
+		try ''
+		;;
+	esac
+	;;
+    arm64)
+	if grep -q "^CONFIG_CPU_BIG_ENDIAN=y" "$kconfig"; then
+	    try aarch64_be-linux-gnu-
+	else
+	    try aarch64-linux-gnu-
+	fi
+	case "$buildmach" in
+	    aarch64*)
+		try ''
+		;;
+	esac
+	;;
+    powerpc)
+	if grep -q "^CONFIG_PPC64=y" "$kconfig"; then
+	    if grep -q "^CONFIG_CPU_LITTLE_ENDIAN=y" "$kconfig"; then
+		try powerpc64le-linux-gnu-
+	    else
+		try powerpc64-linux-gnu-
+	    fi
+	else
+	    # Don't bother checking for SPE
+	    try powerpc-linux-gnu-
+	fi
+	case "$buildmach" in
+	    powerpc* | ppc*)
+		try ''
+		;;
+	esac
+	;;
+    x86)
+	if grep -q "^# CONFIG_64BIT is not set" "$kconfig"; then
+	    try i686-linux-gnu-
+	    try i686-pc-linux-gnu-
+	    try i586-linux-gnu-
+	    try i586-pc-linux-gnu-
+	    try i486-linux-gnu-
+	    try i486-pc-linux-gnu-
+	    try i386-linux-gnu-
+	    try i386-pc-linux-gnu-
+	else
+	    try x86_64-linux-gnu-
+	    try x86_64-pc-linux-gnu-
+	fi
+	case "$buildmach" in
+	    i?86 | x86_64)
+		try ''
+		;;
+	esac
+	;;
+    *)
+	echo >&2 "E: cross-compile: unsupported architecture '$srcarch'"
+	exit 1
+	;;
+esac
+
+echo >&2 "E: cross-compile: no compiler found for '$srcarch'"
+exit 1

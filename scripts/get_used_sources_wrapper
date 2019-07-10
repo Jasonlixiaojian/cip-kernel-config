@@ -1,0 +1,41 @@
+#!/bin/sh -eu
+
+# Copyright 2019 Codethink Ltd.
+#
+# This script is distributed under the terms and conditions of the GNU General
+# Public License, Version 3 or later. See http://www.gnu.org/copyleft/gpl.html
+# for details.
+
+if [ -z "${KERNEL_CONFIG_MAKEFILE-}" ]; then
+    echo >&2 "E: Do not invoke $0 directly; use get_used_sources.py"
+    exit 2
+fi
+
+command="$1"
+shift
+
+# Find dependencies output if already specified
+deps=
+for arg in "$@"; do
+    case "$arg" in
+	-Wp,-MD,*)
+	    deps="${arg#-Wp,-MD,}"
+	    ;;
+    esac
+done
+
+# Add dependencies output if not specified
+if [ -z "${deps}" ]; then
+    deps="$(mktemp)"
+    trap 'rm -f "${deps}"' EXIT
+    set -- "$@" "-Wp,-MD,${deps}"
+fi
+
+"${command}" "$@"
+
+# Collect dependencies.  In case this command didn't actually invoke
+# the preprocessor (e.g. it is only linking), the dependency file will
+# *not* be created.  Don't treat this as an error.
+if [ -f "${deps}" ]; then
+    cat "${deps}" >> "${KERNEL_CONFIG_MAKEFILE}"
+fi

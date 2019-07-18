@@ -15,17 +15,18 @@ SOURCES_GEN := $(patsubst %.config,%.sources,$(CONFIG_SRC) $(CONFIG_GEN))
 
 VERSIONS := $(wildcard [4-9].*)
 CONFIG_ALL := $(patsubst %,%/all-enabled,$(VERSIONS))
+SOURCES_ALL := $(patsubst %,%/all.sources,$(VERSIONS))
 
 # All generated files *except* sources lists, which take a very long time to
 # regenerate
 ALL_GEN := $(sort $(DEFCONFIG_GEN) $(CONFIG_GEN) $(CONFIG_ALL))
 
 all : $(ALL_GEN)
-all_sources : $(sort $(SOURCES_GEN))
+all_sources : $(sort $(SOURCES_GEN) $(SOURCES_ALL))
 clean :
 	rm -f $(ALL_GEN)
 clean_sources :
-	rm -f $(sort $(SOURCES_GEN))
+	rm -f $(sort $(SOURCES_GEN) $(SOURCES_ALL))
 .PHONY : all all_sources clean clean_sources
 
 CROSS_COMPILE = $(shell scripts/cross-compile-prefix $(ARCH) $<)
@@ -68,5 +69,13 @@ $(eval $(version)/all-enabled : $(filter $(version)/%,$(CONFIG_SRC) $(CONFIG_GEN
 %/all-enabled :
 	cd $(KSRC) && git checkout linux-$(VERSION).y-cip
 	scripts/kconfig_annotate.py $(KSRC) $^ > $@
+
+# Can't use $* to select dependencies, as automatic variables are not
+# defined until the recipe runs
+$(foreach version,$(VERSIONS),\
+$(eval $(version)/all.sources : $(filter $(version)/%,$(SOURCES_GEN)))\
+)
+%/all.sources :
+	cat $^ | LC_ALL=C sort -u > $@
 
 .NOTPARALLEL:

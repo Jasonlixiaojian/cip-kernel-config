@@ -14,11 +14,11 @@ CONFIG_GEN := $(DEFCONFIG_SRC:%_defconfig=%.config)
 SOURCES_GEN := $(patsubst %.config,%.sources,$(CONFIG_SRC) $(CONFIG_GEN))
 
 VERSIONS := $(wildcard [4-9].*)
-ALL_ENABLED := $(patsubst %,%/all-enabled,$(VERSIONS))
+CONFIG_ALL := $(patsubst %,%/all-enabled,$(VERSIONS))
 
 # All generated files *except* sources lists, which take a very long time to
 # regenerate
-ALL_GEN := $(sort $(DEFCONFIG_GEN) $(CONFIG_GEN) $(ALL_ENABLED))
+ALL_GEN := $(sort $(DEFCONFIG_GEN) $(CONFIG_GEN) $(CONFIG_ALL))
 
 all : $(ALL_GEN)
 all_sources : $(sort $(SOURCES_GEN))

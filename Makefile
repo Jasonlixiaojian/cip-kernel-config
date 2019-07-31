@@ -2,7 +2,7 @@
 KSRC := ../kernel
 
 # Full .config files provided, and the defconfig files generated from them
-CONFIG_SRC := 4.4/arm/siemens_dcu2.config 4.4/x86/plathome_obsvx1.config 4.4/x86/siemens_i386-rt.config 4.4/x86/siemens_iot2000.config \
+CONFIG_SRC := 4.4/arm/siemens_am57xx-pxm3.config 4.4/arm/siemens_dcu2.config 4.4/x86/plathome_obsvx1.config 4.4/x86/siemens_i386-rt.config 4.4/x86/siemens_iot2000.config \
 	4.19/arm/siemens_imx6.config 4.19/x86/plathome_obsvx2.config 4.19/x86/siemens_i386-rt.config 4.19/x86/siemens_iot2000.config 4.19/x86/toshiba_atom_baytrail_cip.config
 DEFCONFIG_GEN := $(CONFIG_SRC:%.config=%_defconfig)
 

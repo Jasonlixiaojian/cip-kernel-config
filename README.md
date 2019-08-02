@@ -1,8 +1,11 @@
+# cip-kernel-config - Linux kernel configurations for CIP
 
 This repository provides kernel configurations for various boards in
 use in CIP project. Some config files do not provide answers to all
 the config questions; in such case just accept default value, for
 example by using `yes '' | ARCH=xxx make oldconfig`.
+
+## Usage with Lava
 
 Mapping between boards in Lava test lab and config files is as follows:
 

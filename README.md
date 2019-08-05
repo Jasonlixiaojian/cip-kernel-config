@@ -5,6 +5,20 @@ use in CIP project. Some config files do not provide answers to all
 the config questions; in such case just accept default value, for
 example by using `yes '' | ARCH=xxx make oldconfig`.
 
+## Configuration file types
+
+The configuration files may be provided as either:
+
+* Minimised configuration (like in `arch/*/configs`).  This is
+  preferred.  These files have a `_defconfig` suffix.
+* Full configuration (like `.config`).  These have a `.config` suffix.
+
+The `Makefile` has rules for converting between these two formats.
+However, all full configuration files need to be explicitly listed
+in the `CONFIG_SRC` variable.  The minimised configuration files
+generated from them should also be listed in the appropriate
+`.gitignore` file.
+
 ## Usage with Lava
 
 Mapping between boards in Lava test lab and config files is as follows:

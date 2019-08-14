@@ -21,14 +21,14 @@ SOURCES_ALL := $(patsubst %,%/all.sources,$(VERSIONS))
 
 # All generated files *except* sources lists, which take a very long time to
 # regenerate
-ALL_GEN := $(sort $(DEFCONFIG_GEN) $(CONFIG_GEN) $(CONFIG_ALL))
+ALL_GEN := $(DEFCONFIG_GEN) $(CONFIG_GEN) $(CONFIG_ALL)
 
-all : $(ALL_GEN)
-all_sources : $(sort $(SOURCES_GEN) $(SOURCES_ALL))
+all : $(sort $(ALL_GEN))
+all_sources : $(sort $(ALL_GEN) $(SOURCES_GEN) $(SOURCES_ALL))
 clean :
 	rm -f $(ALL_GEN)
 clean_sources :
-	rm -f $(sort $(SOURCES_GEN) $(SOURCES_ALL))
+	rm -f $(ALL_GEN) $(SOURCES_GEN) $(SOURCES_ALL)
 .PHONY : all all_sources clean clean_sources
 
 CROSS_COMPILE = $(shell scripts/cross-compile-prefix $(ARCH) $<)

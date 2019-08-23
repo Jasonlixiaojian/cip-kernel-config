@@ -3898,6 +3898,7 @@ drivers/rtc/rtc-bq32k.c
 drivers/rtc/rtc-core.h
 drivers/rtc/rtc-dev.c
 drivers/rtc/rtc-lib.c
+drivers/rtc/rtc-pcf85363.c
 drivers/rtc/rtc-proc.c
 drivers/rtc/rtc-rs5c372.c
 drivers/rtc/rtc-rx8581.c

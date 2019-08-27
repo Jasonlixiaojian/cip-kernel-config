@@ -61,10 +61,9 @@ The `clean_sources` target will remove all generated files.
 
 Mapping between boards in Lava test lab and config files is as follows:
 
-<table>
-<tr><th>Alias   <th>Device type in Lava     <th>Config file
-<tr><td>iwg20m  <td>r8a7743-iwg20d-q7       <td>arm/renesas_shmobile_defconfig
-<tr><td>socfpga <td>Altera-Terasic-Deo-Nano <td>arm/socfgpa_defconfig
-</table>
+| Alias   | Device type in Lava     | Config file                    |
+| ---     | ---                     | ---                            |
+| iwg20m  | r8a7743-iwg20d-q7       | arm/renesas_shmobile_defconfig |
+| socfpga | Altera-Terasic-Deo-Nano | arm/socfgpa_defconfig          |
 
 List of device types is at <https://lava.ciplatform.org/scheduler/device_types>.

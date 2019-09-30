@@ -82,6 +82,5 @@ a sequence of mappings, where each mapping can have the keys:
 * `paths` (optional): Kernel source file or directory names
   associated with the feature
 
-The `show_warnings.py` script will show the relevant warnings.  Its
-arguments are: the warnings file name, the config file name, and the
-sources list file name.
+Running `make check` will show the relevant warnings for each
+configuration.

@@ -1,0 +1,142 @@
+# Core features
+- description: Kernel stack protector disabled - Security weakness
+  symbols: [CONFIG_CC_STACKPROTECTOR_NONE]
+- description: User heap randomisation disabled - Security weakness
+  symbols: [CONFIG_COMPAT_BRK]
+- description: Obsolete syscalls - Not needed, increased attack surface
+  symbols: [CONFIG_SGETMASK_SYSCALL, CONFIG_SYSCTL_SYSCALL,
+            CONFIG_SYSFS_SYSCALL, CONFIG_UID16, CONFIG_USELIB]
+- description: Deprecated sysfs entries - Probably not needed, incompatible with modern userspace
+  symbols: [CONFIG_SYSFS_DEPRECATED, CONFIG_SYSFS_DEPRECATED_V2]
+- description: User namespaces - Large increase in attack surface
+  symbols: [CONFIG_USER_NS]
+- description: Kernel shared memory - Security weakness
+  symbols: [CONFIG_KSM]
+# Debug features
+- description: Kernel timer statistics - Removed upstream, security weakness
+  symbols: [CONFIG_TIMER_STATS]
+# Filesystems
+- description: btrfs - Too rapidly changing to backport most fixes
+  symbols: CONFIG_BTRFS_FS]
+- description: ceph - Complex network protocol which is likely to need many fixes
+  symbols: [CONFIG_CEPH_LIB, CONFIG_CEPH_FS]
+- description: cifs - Complex network protocol which is likely to need many fixes
+  symbols: [CONFIG_CIFS_FS]
+- description: nfs - Complex network protocol which is likely to need many fixes
+  symbols: [CONFIG_NFS_FS, CONFIG_NFSD]
+- description: ntfs - Fixes are never marked for stable
+  symbols: [CONFIG_NTFS_FS]
+- description: ufs - No work by current maintainer for 7 years
+  symbols: [CONFIG_UFS_FS]
+- description: xfs - Maintainers unsupportive of backporting fixes
+  symbols: [CONFIG_XFS_FS]
+# Networking protocols
+- description: batman-adv - Rapidly changing upstream
+  symbols: [CONFIG_BATMAN_ADV]
+- description: caif - No work by current maintainer for 5 years
+  symbols: [CONFIG_CAIF]
+- description: dcb - No current maintainer
+  symbols: [CONFIG_DCB]
+- description: dccp - Poor security record
+  symbols: [CONFIG_IP_DCCP]
+- description: hsr - No work by current maintainer for 2 years
+  symbols: [CONFIG_HSR]
+- description: llc2 - No work by current maintainer for 7 years
+  symbols: [CONFIG_LLC2]
+- description: phonet - Dead protocol
+  symbols: [CONFIG_PHONET]
+- description: sctp - Poor security record
+  symbols: [CONFIG_IP_SCTP]
+- description: wimax - Dead protocol
+  symbols: [CONFIG_WIMAX]
+- description: x25 - Poor security record
+  symbols: [CONFIG_X25]
+# x86 architecture
+- description: a.out - Not needed, increases attack surface
+  symbols: [CONFIG_IA32_AOUT]
+- description: vsyscall - Only needed by older C libraries, weakens ASLR
+  symbols: [CONFIG_LEGACY_VSYSCALL_NATIVE, CONFIG_LEGACY_VSYSCALL_EMULATE]
+- description: Windows emulation support - Not needed, increases attack surface
+  symbols: [CONFIG_MODIFY_LDT_SYSCALL, CONFIG_X86_16BIT]
+- description: x32 support - Not well tested, increases attack surface
+  symbols: [CONFIG_X86_X32]
+- description: KVM old-style device assignment - Deprecated, removed upstream
+  symbols: [CONFIG_KVM_DEVICE_ASSIGNMENT]
+# x86 platform drivers
+- description: i7300 idle driver - Not needed, removed upstream
+  symbols: [CONFIG_I7300_IDLE]
+- description: Laptop drivers - Not needed
+  symbols: [CONFIG_HP_WIRELESS, CONFIG_INTEL_RST, CONFIG_INTEL_SMARTCONNECT]
+- description: Smartphone drivers - Not needed
+  symbols: [CONFIG_SFI]
+# Storage drivers
+- description: nbd - Very buggy in 4.4, large changes upstream
+  symbols: [CONFIG_BLK_DEV_NBD]
+- description: dm-cache - Experimental in 4.4, large changes upstream
+  symbols: [CONFIG_DM_CACHE]
+- description: dm-switch - Experimental in 4.4
+  symbols: [CONFIG_DM_SWITCH]
+- description: md-multipath - Obsolete, not maintained upstream
+  symbols: [CONFIG_MD_MULTIPATH]
+- description: Old SCSI drivers - Not maintained upstream, probably not needed
+  symbols: [CONFIG_BLK_DEV_3W_XXXX_RAID, CONFIG_SCSI_3W_9XXX,
+            CONFIG_SCSI_3W_SAS, CONFIG_SCSI_ACARD,
+            CONFIG_SCSI_ADVANSYS, CONFIG_SCSI_AM53C974,
+            CONFIG_SCSI_BUSLOGIC, CONFIG_SCSI_DC395x,
+            CONFIG_SCSI_DMX3191D, CONFIG_SCSI_DPT_I2O,
+            CONFIG_SCSI_EATA, CONFIG_SCSI_GDTH, CONFIG_SCSI_IMM,
+            CONFIG_SCSI_INIA100, CONFIG_SCSI_INITIO, CONFIG_SCSI_IPS,
+            CONFIG_SCSI_MVUMI, CONFIG_SCSI_PMCRAID, CONFIG_SCSI_PPA,
+            CONFIG_SCSI_QLOGIC_1280, CONFIG_SCSI_SYM53C8XX_2,
+            CONFIG_SCSI_WD719X, CONFIG_SCSI_AIC79XX,
+            CONFIG_SCSI_AIC7XXX, CONFIG_SCSI_AIC94XX,
+            CONFIG_SCSI_ESAS2R, CONFIG_MEGARAID_LEGACY,
+            CONFIG_SCSI_MVSAS, CONFIG_SCSI_QLA_ISCSI]
+# Graphics drivers
+- description: gma500 - Not maintained upstream
+  symbols: [CONFIG_DRM_GMA500, CONFIG_DRM_GMA600, CONFIG_DRM_GMA3600]
+- description: nouveau - Too rapidly changing to backport most fixes
+  symbols: [CONFIG_DRM_NOUVEAU]
+# Network drivers
+- description: Old Ethernet drivers - Not maintained upstream, probably not needed
+  symbols: [CONFIG_TYPHOON, CONFIG_VORTEX, CONFIG_NE2K_PCI,
+            CONFIG_DNET, CONFIG_ETHOC, CONFIG_FEALNX, CONFIG_JME,
+            CONFIG_ADAPTEC_STARFIRE, CONFIG_AMD8111_ETH,
+            CONFIG_PCNET32, CONFIG_ATL1, CONFIG_ATL1C, CONFIG_ATL1E,
+            CONFIG_ATL2, CONFIG_B44, CONFIG_BCMGENET,
+            CONFIG_CHELSIO_T1, CONFIG_DE2104X, CONFIG_DE4X5,
+            CONFIG_DM9102, CONFIG_NET_TULIP, CONFIG_ULI526X,
+            CONFIG_WINBOND_840, CONFIG_DL2K, CONFIG_SUNDANCE,
+            CONFIG_HP100, CONFIG_SKY2, CONFIG_KS8842,
+            CONFIG_KSZ884X_PCI, CONFIG_ENC28J60, CONFIG_MYRI10GE,
+            CONFIG_NATSEMI, CONFIG_NS83820, CONFIG_S2IO, CONFIG_VXGE,
+            CONFIG_FORCEDETH, CONFIG_HAMACHI, CONFIG_YELLOWFIN,
+            CONFIG_NETXEN_NIC, CONFIG_QLA3XXX, CONFIG_QLGE,
+            CONFIG_R6040, CONFIG_8139CP, CONFIG_8139TOO, CONFIG_ATP,
+            CONFIG_SC92031, CONFIG_SIS190, CONFIG_SIS900,
+            CONFIG_EPIC100, CONFIG_SMSC9420, CONFIG_CASSINI,
+            CONFIG_HAPPYMEAL, CONFIG_NIU, CONFIG_TEHUTI, CONFIG_TLAN,
+            CONFIG_VIA_RHINE, CONFIG_VIA_VELOCITY,
+            CONFIG_WIZNET_W5100, CONFIG_WIZNET_W5300,
+            CONFIG_E100, CONFIG_E1000, CONFIG_SUNGEM]
+- description: Samsung Ethernet driver - Probably not needed
+  symbols: [CONFIG_SXGBE_ETH]
+- description: USB Ethernet drivers - Not well maintained upstream, probably only needed for debugging
+  symbols: [CONFIG_USB_USBNET]
+- description: Old wifi drivers - Not maintained upstream, probably not needed
+  symbols: [CONFIG_IPW2100, CONFIG_IPW2200, CONFIG_ZD1211RW]
+# Miscellaneous drivers
+- description: Unneeded USB host drivers
+  symbols: [CONFIG_USB_FOTG210_HCD, CONFIG_USB_UHCI_HCD]
+- description: OProfile - Barely maintained upstream, redundant
+  symbols: [CONFIG_OPROFILE]
+- description: KVM - Large attack surface, hard to backport fixes
+  symbols: [CONFIG_VIRTUALIZATION]
+- description: /dev/kmem - Insecure, only needed for kernel debugging
+  symbols: [CONFIG_DEVKMEM]
+- description: /dev/mem - Insecure, can be replaced with UIO drivers
+  symbols: [CONFIG_DEVMEM]
+- description: Chrome platform support - Not needed
+  symbols: [CONFIG_CHROME_PLATFORMS]
+- description: Staging - Probably very buggy
+  paths: [drivers/staging/]

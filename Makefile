@@ -80,4 +80,12 @@ $(eval $(version)/all.sources : $(filter $(version)/%,$(SOURCES_GEN)))\
 %/all.sources :
 	cat $^ | LC_ALL=C sort -u > $@
 
+check : $(CONFIG_SRC) $(CONFIG_GEN)
+	$(foreach config,$(sort $^), \
+	scripts/show_warnings.py \
+		$(word 1,$(subst /, ,$(config)))/warnings.yml \
+		$(config) $(patsubst %.config,%.sources,$(config)); \
+	)
+.PHONY : check
+
 .NOTPARALLEL:

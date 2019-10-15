@@ -67,3 +67,20 @@ Mapping between boards in Lava test lab and config files is as follows:
 | socfpga | Altera-Terasic-Deo-Nano | arm/socfgpa_defconfig          |
 
 List of device types is at <https://lava.ciplatform.org/scheduler/device_types>.
+
+## Warnings
+
+Each kernel branch should have rules for warning about configuration
+symbols that are not security supportable or not recommended for other
+reasons, in a YAML file called `warnings.yml`.  This is structured as
+a sequence of mappings, where each mapping can have the keys:
+
+* `description` (required): Short description of the feature and what
+  the problem is with it
+* `symbols` (optional): Kernel config symbols associated with the
+  feature
+* `paths` (optional): Kernel source file or directory names
+  associated with the feature
+
+Running `make check` will show the relevant warnings for each
+configuration.

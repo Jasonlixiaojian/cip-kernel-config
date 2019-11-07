@@ -64,7 +64,8 @@ Mapping between boards in Lava test lab and config files is as follows:
 | Alias   | Device type in Lava     | Config file                    |
 | ---     | ---                     | ---                            |
 | iwg20m  | r8a7743-iwg20d-q7       | arm/renesas_shmobile_defconfig |
-| socfpga | Altera-Terasic-Deo-Nano | arm/socfgpa_defconfig          |
+| socfpga | Altera-Terasic-Deo-Nano | arm/siemens_de0-nano-soc_defconfig |
+|ipc227e  | x86                     | x86/siemens_ipc227e_defconfig  |
 
 List of device types is at <https://lava.ciplatform.org/scheduler/device_types>.
 

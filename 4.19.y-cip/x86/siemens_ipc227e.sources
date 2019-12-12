@@ -602,6 +602,7 @@ arch/x86/kernel/cpu/proc.c
 arch/x86/kernel/cpu/rdrand.c
 arch/x86/kernel/cpu/scattered.c
 arch/x86/kernel/cpu/topology.c
+arch/x86/kernel/cpu/tsx.c
 arch/x86/kernel/cpu/vmware.c
 arch/x86/kernel/crash.c
 arch/x86/kernel/crash_dump_64.c

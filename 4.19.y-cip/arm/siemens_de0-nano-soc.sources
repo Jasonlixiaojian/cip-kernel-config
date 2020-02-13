@@ -810,6 +810,7 @@ arch/arm/boot/dts/imx6qdl-gw5904.dtsi
 arch/arm/boot/dts/imx6qdl-hummingboard.dtsi
 arch/arm/boot/dts/imx6qdl-hummingboard2-emmc.dtsi
 arch/arm/boot/dts/imx6qdl-hummingboard2.dtsi
+arch/arm/boot/dts/imx6qdl-icore-1.5.dtsi
 arch/arm/boot/dts/imx6qdl-icore-rqs.dtsi
 arch/arm/boot/dts/imx6qdl-icore.dtsi
 arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi
@@ -5527,6 +5528,7 @@ drivers/tty/serial/earlycon.c
 drivers/tty/serial/jsm/Makefile
 drivers/tty/serial/serial_core.c
 drivers/tty/sysrq.c
+drivers/tty/tty_audit.c
 drivers/tty/tty_baudrate.c
 drivers/tty/tty_buffer.c
 drivers/tty/tty_io.c
@@ -6401,6 +6403,11 @@ include/acpi/platform/aclinux.h
 include/acpi/platform/aclinuxex.h
 include/asm-generic/5level-fixup.h
 include/asm-generic/atomic-long.h
+include/asm-generic/audit_change_attr.h
+include/asm-generic/audit_dir_write.h
+include/asm-generic/audit_read.h
+include/asm-generic/audit_signal.h
+include/asm-generic/audit_write.h
 include/asm-generic/barrier.h
 include/asm-generic/bitops/arch_hweight.h
 include/asm-generic/bitops/builtin-__ffs.h
@@ -6562,6 +6569,7 @@ include/linux/cdev.h
 include/linux/cdrom.h
 include/linux/cgroup-defs.h
 include/linux/cgroup.h
+include/linux/cgroup_rdma.h
 include/linux/cgroup_subsys.h
 include/linux/circ_buf.h
 include/linux/cleancache.h
@@ -6789,6 +6797,7 @@ include/linux/ipv6.h
 include/linux/ipv6_route.h
 include/linux/irq.h
 include/linux/irq_cpustat.h
+include/linux/irq_poll.h
 include/linux/irq_work.h
 include/linux/irqchip.h
 include/linux/irqchip/arm-gic-common.h
@@ -6873,6 +6882,7 @@ include/linux/lockdep.h
 include/linux/lockref.h
 include/linux/log2.h
 include/linux/logic_pio.h
+include/linux/lsm_audit.h
 include/linux/lsm_hooks.h
 include/linux/lz4.h
 include/linux/lzo.h
@@ -7521,6 +7531,8 @@ include/net/wext.h
 include/net/xdp.h
 include/net/xdp_sock.h
 include/net/xfrm.h
+include/rdma/ib_verbs.h
+include/rdma/restrack.h
 include/scsi/fc/fc_fcoe.h
 include/scsi/scsi.h
 include/scsi/scsi_cmnd.h
@@ -7898,6 +7910,13 @@ include/uapi/linux/wireless.h
 include/uapi/linux/xattr.h
 include/uapi/linux/xfrm.h
 include/uapi/mtd/mtd-abi.h
+include/uapi/rdma/hfi/hfi1_ioctl.h
+include/uapi/rdma/ib_user_ioctl_verbs.h
+include/uapi/rdma/ib_user_mad.h
+include/uapi/rdma/ib_user_verbs.h
+include/uapi/rdma/rdma_netlink.h
+include/uapi/rdma/rdma_user_ioctl.h
+include/uapi/rdma/rdma_user_ioctl_cmds.h
 include/video/vga.h
 include/xen/arm/hypervisor.h
 include/xen/xen.h
@@ -7928,7 +7947,13 @@ kernel/Kconfig.locks
 kernel/Kconfig.preempt
 kernel/Makefile
 kernel/async.c
+kernel/audit.c
 kernel/audit.h
+kernel/audit_fsnotify.c
+kernel/audit_tree.c
+kernel/audit_watch.c
+kernel/auditfilter.c
+kernel/auditsc.c
 kernel/bounds.c
 kernel/bpf/Makefile
 kernel/bpf/core.c
@@ -8182,6 +8207,7 @@ lib/Kconfig.ubsan
 lib/Makefile
 lib/argv_split.c
 lib/assoc_array.c
+lib/audit.c
 lib/bcd.c
 lib/bitmap.c
 lib/bitrev.c
@@ -9167,6 +9193,7 @@ security/keys/sysctl.c
 security/keys/user_defined.c
 security/loadpin/Kconfig
 security/loadpin/Makefile
+security/lsm_audit.c
 security/min_addr.c
 security/selinux/Kconfig
 security/selinux/Makefile

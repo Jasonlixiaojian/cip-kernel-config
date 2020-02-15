@@ -7413,7 +7413,6 @@ kernel/extable.c
 kernel/fork.c
 kernel/freezer.c
 kernel/futex.c
-kernel/futex_compat.c
 kernel/gcov/Kconfig
 kernel/gcov/Makefile
 kernel/groups.c

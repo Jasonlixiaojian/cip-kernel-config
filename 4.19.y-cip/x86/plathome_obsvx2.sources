@@ -593,6 +593,7 @@ arch/x86/kernel/cpu/proc.c
 arch/x86/kernel/cpu/rdrand.c
 arch/x86/kernel/cpu/scattered.c
 arch/x86/kernel/cpu/topology.c
+arch/x86/kernel/cpu/tsx.c
 arch/x86/kernel/cpuid.c
 arch/x86/kernel/doublefault.c
 arch/x86/kernel/dumpstack.c
@@ -4172,9 +4173,6 @@ drivers/staging/mt7621-eth/Documentation/devicetree/bindings/net/mediatek-net-gs
 drivers/staging/mt7621-eth/Kconfig
 drivers/staging/mt7621-eth/Makefile
 drivers/staging/mt7621-eth/TODO
-drivers/staging/mt7621-mmc/Kconfig
-drivers/staging/mt7621-mmc/Makefile
-drivers/staging/mt7621-mmc/TODO
 drivers/staging/mt7621-pci/Kconfig
 drivers/staging/mt7621-pci/Makefile
 drivers/staging/mt7621-pci/TODO
@@ -5457,6 +5455,7 @@ fs/xfs/libxfs/xfs_alloc.h
 fs/xfs/libxfs/xfs_alloc_btree.c
 fs/xfs/libxfs/xfs_alloc_btree.h
 fs/xfs/libxfs/xfs_attr.c
+fs/xfs/libxfs/xfs_attr.h
 fs/xfs/libxfs/xfs_attr_leaf.c
 fs/xfs/libxfs/xfs_attr_leaf.h
 fs/xfs/libxfs/xfs_attr_remote.c
@@ -5526,7 +5525,6 @@ fs/xfs/xfs_acl.c
 fs/xfs/xfs_acl.h
 fs/xfs/xfs_aops.c
 fs/xfs/xfs_aops.h
-fs/xfs/xfs_attr.h
 fs/xfs/xfs_attr_inactive.c
 fs/xfs/xfs_attr_list.c
 fs/xfs/xfs_bmap_item.c
@@ -6896,9 +6894,13 @@ include/linux/zconf.h
 include/linux/zlib.h
 include/linux/zstd.h
 include/linux/zutil.h
+include/media/cec-notifier.h
+include/media/cec.h
 include/media/media-device.h
 include/media/media-devnode.h
 include/media/media-entity.h
+include/media/rc-core.h
+include/media/rc-map.h
 include/media/v4l2-async.h
 include/media/v4l2-clk.h
 include/media/v4l2-common.h
@@ -7356,6 +7358,7 @@ include/uapi/linux/can/raw.h
 include/uapi/linux/capability.h
 include/uapi/linux/capi.h
 include/uapi/linux/cdrom.h
+include/uapi/linux/cec-funcs.h
 include/uapi/linux/cec.h
 include/uapi/linux/cgroupstats.h
 include/uapi/linux/cifs/cifs_mount.h
@@ -7466,6 +7469,7 @@ include/uapi/linux/kvm_para.h
 include/uapi/linux/l2tp.h
 include/uapi/linux/libc-compat.h
 include/uapi/linux/limits.h
+include/uapi/linux/lirc.h
 include/uapi/linux/llc.h
 include/uapi/linux/loop.h
 include/uapi/linux/lp.h
@@ -7876,7 +7880,6 @@ kernel/extable.c
 kernel/fork.c
 kernel/freezer.c
 kernel/futex.c
-kernel/futex_compat.c
 kernel/gcov/Kconfig
 kernel/gcov/Makefile
 kernel/groups.c
@@ -10059,6 +10062,7 @@ sound/usb/stream.c
 sound/usb/stream.h
 sound/usb/usbaudio.h
 sound/usb/usx2y/Makefile
+sound/usb/validate.c
 sound/x86/Kconfig
 sound/x86/Makefile
 sound/xen/Kconfig

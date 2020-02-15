@@ -279,7 +279,6 @@ arch/x86/include/asm/mmconfig.h
 arch/x86/include/asm/mmu.h
 arch/x86/include/asm/mmu_context.h
 arch/x86/include/asm/mmzone.h
-arch/x86/include/asm/mmzone_32.h
 arch/x86/include/asm/mmzone_64.h
 arch/x86/include/asm/module.h
 arch/x86/include/asm/mpspec.h
@@ -297,7 +296,6 @@ arch/x86/include/asm/nmi.h
 arch/x86/include/asm/nops.h
 arch/x86/include/asm/nospec-branch.h
 arch/x86/include/asm/numa.h
-arch/x86/include/asm/numa_32.h
 arch/x86/include/asm/olpc_ofw.h
 arch/x86/include/asm/page.h
 arch/x86/include/asm/page_32.h
@@ -388,7 +386,6 @@ arch/x86/include/asm/trace_clock.h
 arch/x86/include/asm/traps.h
 arch/x86/include/asm/tsc.h
 arch/x86/include/asm/uaccess.h
-arch/x86/include/asm/uaccess_32.h
 arch/x86/include/asm/uaccess_64.h
 arch/x86/include/asm/unaligned.h
 arch/x86/include/asm/unistd.h
@@ -543,6 +540,7 @@ arch/x86/kernel/cpu/proc.c
 arch/x86/kernel/cpu/rdrand.c
 arch/x86/kernel/cpu/scattered.c
 arch/x86/kernel/cpu/topology.c
+arch/x86/kernel/cpu/tsx.c
 arch/x86/kernel/cpuid.c
 arch/x86/kernel/doublefault.c
 arch/x86/kernel/dumpstack.c
@@ -6513,6 +6511,7 @@ include/linux/shmem_fs.h
 include/linux/shrinker.h
 include/linux/signal.h
 include/linux/signalfd.h
+include/linux/siphash.h
 include/linux/sizes.h
 include/linux/skbuff.h
 include/linux/slab.h
@@ -8015,6 +8014,7 @@ lib/scatterlist.c
 lib/seq_buf.c
 lib/sha1.c
 lib/show_mem.c
+lib/siphash.c
 lib/smp_processor_id.c
 lib/sort.c
 lib/string.c

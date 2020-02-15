@@ -810,6 +810,7 @@ arch/arm/boot/dts/imx6qdl-gw5904.dtsi
 arch/arm/boot/dts/imx6qdl-hummingboard.dtsi
 arch/arm/boot/dts/imx6qdl-hummingboard2-emmc.dtsi
 arch/arm/boot/dts/imx6qdl-hummingboard2.dtsi
+arch/arm/boot/dts/imx6qdl-icore-1.5.dtsi
 arch/arm/boot/dts/imx6qdl-icore-rqs.dtsi
 arch/arm/boot/dts/imx6qdl-icore.dtsi
 arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi

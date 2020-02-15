@@ -597,6 +597,7 @@ arch/x86/kernel/cpu/proc.c
 arch/x86/kernel/cpu/rdrand.c
 arch/x86/kernel/cpu/scattered.c
 arch/x86/kernel/cpu/topology.c
+arch/x86/kernel/cpu/tsx.c
 arch/x86/kernel/cpuid.c
 arch/x86/kernel/doublefault.c
 arch/x86/kernel/dumpstack.c
@@ -4100,9 +4101,6 @@ drivers/staging/mt7621-eth/Documentation/devicetree/bindings/net/mediatek-net-gs
 drivers/staging/mt7621-eth/Kconfig
 drivers/staging/mt7621-eth/Makefile
 drivers/staging/mt7621-eth/TODO
-drivers/staging/mt7621-mmc/Kconfig
-drivers/staging/mt7621-mmc/Makefile
-drivers/staging/mt7621-mmc/TODO
 drivers/staging/mt7621-pci/Kconfig
 drivers/staging/mt7621-pci/Makefile
 drivers/staging/mt7621-pci/TODO

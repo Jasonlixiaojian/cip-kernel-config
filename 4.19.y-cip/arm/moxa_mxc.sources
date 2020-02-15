@@ -812,6 +812,7 @@ arch/arm/boot/dts/imx6qdl-gw5904.dtsi
 arch/arm/boot/dts/imx6qdl-hummingboard.dtsi
 arch/arm/boot/dts/imx6qdl-hummingboard2-emmc.dtsi
 arch/arm/boot/dts/imx6qdl-hummingboard2.dtsi
+arch/arm/boot/dts/imx6qdl-icore-1.5.dtsi
 arch/arm/boot/dts/imx6qdl-icore-rqs.dtsi
 arch/arm/boot/dts/imx6qdl-icore.dtsi
 arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi
@@ -6507,9 +6508,6 @@ drivers/staging/mt7621-eth/Documentation/devicetree/bindings/net/mediatek-net-gs
 drivers/staging/mt7621-eth/Kconfig
 drivers/staging/mt7621-eth/Makefile
 drivers/staging/mt7621-eth/TODO
-drivers/staging/mt7621-mmc/Kconfig
-drivers/staging/mt7621-mmc/Makefile
-drivers/staging/mt7621-mmc/TODO
 drivers/staging/mt7621-pci/Kconfig
 drivers/staging/mt7621-pci/Makefile
 drivers/staging/mt7621-pci/TODO
@@ -8260,6 +8258,7 @@ fs/xfs/libxfs/xfs_alloc.h
 fs/xfs/libxfs/xfs_alloc_btree.c
 fs/xfs/libxfs/xfs_alloc_btree.h
 fs/xfs/libxfs/xfs_attr.c
+fs/xfs/libxfs/xfs_attr.h
 fs/xfs/libxfs/xfs_attr_leaf.c
 fs/xfs/libxfs/xfs_attr_leaf.h
 fs/xfs/libxfs/xfs_attr_remote.c
@@ -8330,7 +8329,6 @@ fs/xfs/xfs_acl.c
 fs/xfs/xfs_acl.h
 fs/xfs/xfs_aops.c
 fs/xfs/xfs_aops.h
-fs/xfs/xfs_attr.h
 fs/xfs/xfs_attr_inactive.c
 fs/xfs/xfs_attr_list.c
 fs/xfs/xfs_bmap_item.c

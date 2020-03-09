@@ -810,6 +810,7 @@ arch/arm/boot/dts/imx6qdl-gw5904.dtsi
 arch/arm/boot/dts/imx6qdl-hummingboard.dtsi
 arch/arm/boot/dts/imx6qdl-hummingboard2-emmc.dtsi
 arch/arm/boot/dts/imx6qdl-hummingboard2.dtsi
+arch/arm/boot/dts/imx6qdl-icore-1.5.dtsi
 arch/arm/boot/dts/imx6qdl-icore-rqs.dtsi
 arch/arm/boot/dts/imx6qdl-icore.dtsi
 arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi
@@ -5209,9 +5210,6 @@ drivers/staging/mt7621-eth/Documentation/devicetree/bindings/net/mediatek-net-gs
 drivers/staging/mt7621-eth/Kconfig
 drivers/staging/mt7621-eth/Makefile
 drivers/staging/mt7621-eth/TODO
-drivers/staging/mt7621-mmc/Kconfig
-drivers/staging/mt7621-mmc/Makefile
-drivers/staging/mt7621-mmc/TODO
 drivers/staging/mt7621-pci/Kconfig
 drivers/staging/mt7621-pci/Makefile
 drivers/staging/mt7621-pci/TODO

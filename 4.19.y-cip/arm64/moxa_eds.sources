@@ -331,6 +331,14 @@ arch/arm64/boot/dts/realtek/rtd1295.dtsi
 arch/arm64/boot/dts/realtek/rtd129x.dtsi
 arch/arm64/boot/dts/renesas/Makefile
 arch/arm64/boot/dts/renesas/cat875.dtsi
+arch/arm64/boot/dts/renesas/hihope-common.dtsi
+arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
+arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex.dts
+arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m.dts
+arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-ex.dts
+arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n.dts
+arch/arm64/boot/dts/renesas/r8a774b1.dtsi
 arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
 arch/arm64/boot/dts/renesas/r8a774c0-ek874.dts
 arch/arm64/boot/dts/renesas/r8a774c0.dtsi
@@ -361,6 +369,7 @@ arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
 arch/arm64/boot/dts/renesas/r8a77990.dtsi
 arch/arm64/boot/dts/renesas/r8a77995-draak.dts
 arch/arm64/boot/dts/renesas/r8a77995.dtsi
+arch/arm64/boot/dts/renesas/rzg2-advantech-idk-1110wr-panel.dtsi
 arch/arm64/boot/dts/renesas/salvator-common.dtsi
 arch/arm64/boot/dts/renesas/salvator-x.dtsi
 arch/arm64/boot/dts/renesas/salvator-xs.dtsi
@@ -3524,9 +3533,6 @@ drivers/staging/mt7621-eth/Documentation/devicetree/bindings/net/mediatek-net-gs
 drivers/staging/mt7621-eth/Kconfig
 drivers/staging/mt7621-eth/Makefile
 drivers/staging/mt7621-eth/TODO
-drivers/staging/mt7621-mmc/Kconfig
-drivers/staging/mt7621-mmc/Makefile
-drivers/staging/mt7621-mmc/TODO
 drivers/staging/mt7621-pci/Kconfig
 drivers/staging/mt7621-pci/Makefile
 drivers/staging/mt7621-pci/TODO

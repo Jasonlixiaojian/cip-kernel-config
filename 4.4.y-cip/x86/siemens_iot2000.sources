@@ -479,6 +479,7 @@ arch/x86/kernel/cpu/rdrand.c
 arch/x86/kernel/cpu/scattered.c
 arch/x86/kernel/cpu/topology.c
 arch/x86/kernel/cpu/transmeta.c
+arch/x86/kernel/cpu/tsx.c
 arch/x86/kernel/cpuid.c
 arch/x86/kernel/doublefault.c
 arch/x86/kernel/dumpstack.c
@@ -5235,6 +5236,7 @@ include/linux/shmem_fs.h
 include/linux/shrinker.h
 include/linux/signal.h
 include/linux/signalfd.h
+include/linux/siphash.h
 include/linux/sizes.h
 include/linux/skbuff.h
 include/linux/slab.h
@@ -6441,6 +6443,7 @@ lib/scatterlist.c
 lib/seq_buf.c
 lib/sha1.c
 lib/show_mem.c
+lib/siphash.c
 lib/sort.c
 lib/string.c
 lib/string_helpers.c

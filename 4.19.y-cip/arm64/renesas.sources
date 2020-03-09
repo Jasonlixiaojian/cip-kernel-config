@@ -336,6 +336,14 @@ arch/arm64/boot/dts/realtek/rtd1295.dtsi
 arch/arm64/boot/dts/realtek/rtd129x.dtsi
 arch/arm64/boot/dts/renesas/Makefile
 arch/arm64/boot/dts/renesas/cat875.dtsi
+arch/arm64/boot/dts/renesas/hihope-common.dtsi
+arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
+arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex.dts
+arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m.dts
+arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-ex.dts
+arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n.dts
+arch/arm64/boot/dts/renesas/r8a774b1.dtsi
 arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
 arch/arm64/boot/dts/renesas/r8a774c0-ek874.dts
 arch/arm64/boot/dts/renesas/r8a774c0.dtsi
@@ -366,6 +374,7 @@ arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
 arch/arm64/boot/dts/renesas/r8a77990.dtsi
 arch/arm64/boot/dts/renesas/r8a77995-draak.dts
 arch/arm64/boot/dts/renesas/r8a77995.dtsi
+arch/arm64/boot/dts/renesas/rzg2-advantech-idk-1110wr-panel.dtsi
 arch/arm64/boot/dts/renesas/salvator-common.dtsi
 arch/arm64/boot/dts/renesas/salvator-x.dtsi
 arch/arm64/boot/dts/renesas/salvator-xs.dtsi
@@ -1124,6 +1133,7 @@ drivers/clk/renesas/Makefile
 drivers/clk/renesas/clk-div6.c
 drivers/clk/renesas/clk-div6.h
 drivers/clk/renesas/r8a774a1-cpg-mssr.c
+drivers/clk/renesas/r8a774b1-cpg-mssr.c
 drivers/clk/renesas/r8a774c0-cpg-mssr.c
 drivers/clk/renesas/rcar-gen3-cpg.c
 drivers/clk/renesas/rcar-gen3-cpg.h
@@ -1561,6 +1571,7 @@ drivers/gpu/drm/hisilicon/kirin/Kconfig
 drivers/gpu/drm/hisilicon/kirin/Makefile
 drivers/gpu/drm/i2c/Kconfig
 drivers/gpu/drm/i2c/Makefile
+drivers/gpu/drm/i2c/tda998x_drv.c
 drivers/gpu/drm/i810/Makefile
 drivers/gpu/drm/i915/Kconfig
 drivers/gpu/drm/i915/Kconfig.debug
@@ -1720,6 +1731,7 @@ drivers/gpu/drm/rcar-du/rcar_du_vsp.c
 drivers/gpu/drm/rcar-du/rcar_du_vsp.h
 drivers/gpu/drm/rcar-du/rcar_dw_hdmi.c
 drivers/gpu/drm/rcar-du/rcar_lvds.c
+drivers/gpu/drm/rcar-du/rcar_lvds.h
 drivers/gpu/drm/rcar-du/rcar_lvds_regs.h
 drivers/gpu/drm/rockchip/Kconfig
 drivers/gpu/drm/rockchip/Makefile
@@ -2107,7 +2119,6 @@ drivers/media/cec/Makefile
 drivers/media/cec/cec-adap.c
 drivers/media/cec/cec-api.c
 drivers/media/cec/cec-core.c
-drivers/media/cec/cec-edid.c
 drivers/media/cec/cec-notifier.c
 drivers/media/cec/cec-pin-priv.h
 drivers/media/cec/cec-priv.h
@@ -3347,6 +3358,7 @@ drivers/pinctrl/sh-pfc/Makefile
 drivers/pinctrl/sh-pfc/core.c
 drivers/pinctrl/sh-pfc/core.h
 drivers/pinctrl/sh-pfc/pfc-r8a7796.c
+drivers/pinctrl/sh-pfc/pfc-r8a77965.c
 drivers/pinctrl/sh-pfc/pfc-r8a77990.c
 drivers/pinctrl/sh-pfc/pinctrl.c
 drivers/pinctrl/sh-pfc/sh_pfc.h
@@ -3663,6 +3675,7 @@ drivers/soc/qcom/Makefile
 drivers/soc/renesas/Kconfig
 drivers/soc/renesas/Makefile
 drivers/soc/renesas/r8a774a1-sysc.c
+drivers/soc/renesas/r8a774b1-sysc.c
 drivers/soc/renesas/r8a774c0-sysc.c
 drivers/soc/renesas/rcar-rst.c
 drivers/soc/renesas/rcar-sysc.c
@@ -3866,9 +3879,6 @@ drivers/staging/mt7621-eth/Documentation/devicetree/bindings/net/mediatek-net-gs
 drivers/staging/mt7621-eth/Kconfig
 drivers/staging/mt7621-eth/Makefile
 drivers/staging/mt7621-eth/TODO
-drivers/staging/mt7621-mmc/Kconfig
-drivers/staging/mt7621-mmc/Makefile
-drivers/staging/mt7621-mmc/TODO
 drivers/staging/mt7621-pci/Kconfig
 drivers/staging/mt7621-pci/Makefile
 drivers/staging/mt7621-pci/TODO
@@ -5198,12 +5208,16 @@ include/drm/drm_utils.h
 include/drm/drm_vblank.h
 include/drm/drm_vma_manager.h
 include/drm/drm_writeback.h
+include/drm/i2c/tda998x.h
 include/dt-bindings/clock/r8a774a1-cpg-mssr.h
+include/dt-bindings/clock/r8a774b1-cpg-mssr.h
 include/dt-bindings/clock/r8a774c0-cpg-mssr.h
 include/dt-bindings/clock/renesas-cpg-mssr.h
+include/dt-bindings/display/tda998x.h
 include/dt-bindings/i2c/i2c.h
 include/dt-bindings/input/gpio-keys.h
 include/dt-bindings/power/r8a774a1-sysc.h
+include/dt-bindings/power/r8a774b1-sysc.h
 include/dt-bindings/power/r8a774c0-sysc.h
 include/dt-bindings/pwm/pwm.h
 include/dt-bindings/spmi/spmi.h
@@ -5822,6 +5836,7 @@ include/linux/platform_data/i2c-designware.h
 include/linux/platform_data/pca953x.h
 include/linux/platform_data/pca954x.h
 include/linux/platform_data/pinctrl-single.h
+include/linux/platform_data/tda9950.h
 include/linux/platform_data/usb3503.h
 include/linux/platform_data/x86/apple.h
 include/linux/platform_device.h
@@ -6951,7 +6966,6 @@ kernel/extable.c
 kernel/fork.c
 kernel/freezer.c
 kernel/futex.c
-kernel/futex_compat.c
 kernel/gcov/Kconfig
 kernel/gcov/Makefile
 kernel/groups.c
@@ -7887,11 +7901,16 @@ scripts/dtc/include-prefixes/arm
 scripts/dtc/include-prefixes/arm64
 scripts/dtc/include-prefixes/c6x
 scripts/dtc/include-prefixes/dt-bindings
+scripts/dtc/include-prefixes/dt-bindings/clock/r8a774a1-cpg-mssr.h
+scripts/dtc/include-prefixes/dt-bindings/clock/r8a774b1-cpg-mssr.h
 scripts/dtc/include-prefixes/dt-bindings/clock/r8a774c0-cpg-mssr.h
 scripts/dtc/include-prefixes/dt-bindings/clock/renesas-cpg-mssr.h
+scripts/dtc/include-prefixes/dt-bindings/display/tda998x.h
 scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h
 scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h
 scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h
+scripts/dtc/include-prefixes/dt-bindings/power/r8a774a1-sysc.h
+scripts/dtc/include-prefixes/dt-bindings/power/r8a774b1-sysc.h
 scripts/dtc/include-prefixes/dt-bindings/power/r8a774c0-sysc.h
 scripts/dtc/include-prefixes/h8300
 scripts/dtc/include-prefixes/microblaze
@@ -8430,6 +8449,7 @@ virt/kvm/Kconfig
 virt/kvm/arm/aarch32.c
 virt/kvm/arm/arch_timer.c
 virt/kvm/arm/arm.c
+virt/kvm/arm/hyp/aarch32.c
 virt/kvm/arm/hyp/timer-sr.c
 virt/kvm/arm/hyp/vgic-v3-sr.c
 virt/kvm/arm/mmio.c

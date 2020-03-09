@@ -846,6 +846,10 @@ arch/arm/boot/dts/r8a7743-iwg20d-q7-dbcm-ca.dts
 arch/arm/boot/dts/r8a7743-iwg20d-q7.dts
 arch/arm/boot/dts/r8a7743-iwg20m.dtsi
 arch/arm/boot/dts/r8a7743.dtsi
+arch/arm/boot/dts/r8a7744-iwg20d-q7-dbcm-ca.dts
+arch/arm/boot/dts/r8a7744-iwg20d-q7.dts
+arch/arm/boot/dts/r8a7744-iwg20m.dtsi
+arch/arm/boot/dts/r8a7744.dtsi
 arch/arm/boot/dts/r8a7745-iwg22d-sodimm-dbhd-ca.dts
 arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dts
 arch/arm/boot/dts/r8a7745-iwg22m.dtsi
@@ -1421,6 +1425,7 @@ arch/arm/include/asm/mmu_context.h
 arch/arm/include/asm/module.h
 arch/arm/include/asm/mpu.h
 arch/arm/include/asm/mutex.h
+arch/arm/include/asm/opcodes-sec.h
 arch/arm/include/asm/opcodes-virt.h
 arch/arm/include/asm/opcodes.h
 arch/arm/include/asm/outercache.h
@@ -1507,6 +1512,7 @@ arch/arm/kernel/asm-offsets.c
 arch/arm/kernel/atags.h
 arch/arm/kernel/atags_parse.c
 arch/arm/kernel/bios32.c
+arch/arm/kernel/bugs.c
 arch/arm/kernel/calls.S
 arch/arm/kernel/cpuidle.c
 arch/arm/kernel/devtree.c
@@ -1538,6 +1544,7 @@ arch/arm/kernel/setup.c
 arch/arm/kernel/signal.c
 arch/arm/kernel/sigreturn_codes.S
 arch/arm/kernel/sleep.S
+arch/arm/kernel/smccc-call.S
 arch/arm/kernel/smp.c
 arch/arm/kernel/smp_scu.c
 arch/arm/kernel/smp_tlb.c
@@ -1818,6 +1825,7 @@ arch/arm/mm/pgd.c
 arch/arm/mm/proc-macros.S
 arch/arm/mm/proc-syms.c
 arch/arm/mm/proc-v7-2level.S
+arch/arm/mm/proc-v7-bugs.c
 arch/arm/mm/proc-v7.S
 arch/arm/mm/tcm.h
 arch/arm/mm/tlb-v7.S
@@ -5118,6 +5126,7 @@ include/acpi/platform/aclinux.h
 include/acpi/platform/aclinuxex.h
 include/asm-generic/Kbuild.asm
 include/asm-generic/atomic-long.h
+include/asm-generic/barrier.h
 include/asm-generic/bitops/arch_hweight.h
 include/asm-generic/bitops/const_hweight.h
 include/asm-generic/bitops/ext2-atomic-setbit.h
@@ -5235,6 +5244,7 @@ include/linux/amba/bus.h
 include/linux/amba/pl330.h
 include/linux/amba/sp810.h
 include/linux/anon_inodes.h
+include/linux/arm-smccc.h
 include/linux/assoc_array.h
 include/linux/async.h
 include/linux/atalk.h
@@ -5865,6 +5875,7 @@ include/linux/shmem_fs.h
 include/linux/shrinker.h
 include/linux/signal.h
 include/linux/signalfd.h
+include/linux/siphash.h
 include/linux/sizes.h
 include/linux/skbuff.h
 include/linux/slab.h
@@ -6884,6 +6895,7 @@ lib/scatterlist.c
 lib/seq_buf.c
 lib/sha1.c
 lib/show_mem.c
+lib/siphash.c
 lib/sort.c
 lib/string.c
 lib/string_helpers.c

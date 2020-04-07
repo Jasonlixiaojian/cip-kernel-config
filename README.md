@@ -63,7 +63,8 @@ Mapping between boards in LAVA test lab and config files is as follows:
 
 | Alias          | Device type in LAVA      | Config file                        |
 | ---            | ---                      | ---                                |
-| socfpga        | Altera-Terasic-Deo-Nano  | arm/siemens_de0-nano-soc_defconfig |
+| bbb\*          | beaglebone-black         | arm/cip_bbb_defconfig              |
+| socfpga\*      | de0-nano-soc             | arm/siemens_de0-nano-soc_defconfig |
 | qemu-x86_64\*  | qemu                     | x86/cip_qemu_defconfig             |
 | iwg20m-g1m\*   | r8a7743-iwg20d-q7        | arm/renesas_shmobile_defconfig     |
 | iwg22m         | r8a7745-iwg22d-sodimm    | arm/renesas_shmobile_defconfig     |

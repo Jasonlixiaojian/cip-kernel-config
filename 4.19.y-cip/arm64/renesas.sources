@@ -338,6 +338,7 @@ arch/arm64/boot/dts/renesas/Makefile
 arch/arm64/boot/dts/renesas/cat875.dtsi
 arch/arm64/boot/dts/renesas/hihope-common.dtsi
 arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
+arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex-idk-1110wr.dts
 arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex.dts
 arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m.dts
 arch/arm64/boot/dts/renesas/r8a774a1.dtsi
@@ -345,6 +346,7 @@ arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-ex.dts
 arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n.dts
 arch/arm64/boot/dts/renesas/r8a774b1.dtsi
 arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
+arch/arm64/boot/dts/renesas/r8a774c0-ek874-idk-2121wr.dts
 arch/arm64/boot/dts/renesas/r8a774c0-ek874.dts
 arch/arm64/boot/dts/renesas/r8a774c0.dtsi
 arch/arm64/boot/dts/renesas/r8a7795-es1-h3ulcb-kf.dts
@@ -1688,6 +1690,7 @@ drivers/gpu/drm/omapdrm/dss/Kconfig
 drivers/gpu/drm/omapdrm/dss/Makefile
 drivers/gpu/drm/panel/Kconfig
 drivers/gpu/drm/panel/Makefile
+drivers/gpu/drm/panel/panel-lvds.c
 drivers/gpu/drm/pl111/Kconfig
 drivers/gpu/drm/pl111/Makefile
 drivers/gpu/drm/qxl/Kconfig
@@ -4342,6 +4345,8 @@ drivers/video/Makefile
 drivers/video/backlight/Kconfig
 drivers/video/backlight/Makefile
 drivers/video/backlight/backlight.c
+drivers/video/backlight/generic_bl.c
+drivers/video/backlight/lcd.c
 drivers/video/backlight/pwm_bl.c
 drivers/video/console/Kconfig
 drivers/video/console/Makefile
@@ -5623,6 +5628,7 @@ include/linux/kvm_para.h
 include/linux/kvm_types.h
 include/linux/l2tp.h
 include/linux/latencytop.h
+include/linux/lcd.h
 include/linux/lcm.h
 include/linux/leds.h
 include/linux/leds_pwm.h

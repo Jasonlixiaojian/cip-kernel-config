@@ -39,6 +39,7 @@ arch/arm/boot/dts/am335x-evm.dts
 arch/arm/boot/dts/am335x-evmsk.dts
 arch/arm/boot/dts/am335x-igep0033.dtsi
 arch/arm/boot/dts/am335x-lxm.dts
+arch/arm/boot/dts/am335x-moxa-uc-8100-me-t.dts
 arch/arm/boot/dts/am335x-nano.dts
 arch/arm/boot/dts/am335x-pepper.dts
 arch/arm/boot/dts/am335x-phycore-som.dtsi
@@ -2412,6 +2413,7 @@ drivers/gpu/drm/drm_mm.c
 drivers/gpu/drm/drm_modes.c
 drivers/gpu/drm/drm_modeset_lock.c
 drivers/gpu/drm/drm_of.c
+drivers/gpu/drm/drm_panel.c
 drivers/gpu/drm/drm_pci.c
 drivers/gpu/drm/drm_plane_helper.c
 drivers/gpu/drm/drm_platform.c
@@ -2528,6 +2530,7 @@ drivers/gpu/drm/omapdrm/Makefile
 drivers/gpu/drm/omapdrm/TODO
 drivers/gpu/drm/panel/Kconfig
 drivers/gpu/drm/panel/Makefile
+drivers/gpu/drm/panel/panel-simple.c
 drivers/gpu/drm/qxl/Kconfig
 drivers/gpu/drm/qxl/Makefile
 drivers/gpu/drm/r128/Makefile
@@ -2566,6 +2569,8 @@ drivers/gpu/drm/rcar-du/rcar_du_lvdsenc.h
 drivers/gpu/drm/rcar-du/rcar_du_plane.c
 drivers/gpu/drm/rcar-du/rcar_du_plane.h
 drivers/gpu/drm/rcar-du/rcar_du_regs.h
+drivers/gpu/drm/rcar-du/rcar_du_rgbcon.c
+drivers/gpu/drm/rcar-du/rcar_du_rgbcon.h
 drivers/gpu/drm/rcar-du/rcar_du_vgacon.c
 drivers/gpu/drm/rcar-du/rcar_du_vgacon.h
 drivers/gpu/drm/rcar-du/rcar_lvds_regs.h
@@ -2782,6 +2787,7 @@ drivers/input/tablet/Kconfig
 drivers/input/tablet/Makefile
 drivers/input/touchscreen/Kconfig
 drivers/input/touchscreen/Makefile
+drivers/input/touchscreen/edt-ft5x06.c
 drivers/input/touchscreen/of_touchscreen.c
 drivers/input/touchscreen/st1232.c
 drivers/iommu/Kconfig
@@ -4638,7 +4644,11 @@ drivers/video/backlight/backlight.c
 drivers/video/backlight/pwm_bl.c
 drivers/video/console/Kconfig
 drivers/video/console/Makefile
+drivers/video/console/bitblit.c
 drivers/video/console/dummycon.c
+drivers/video/console/fbcon.c
+drivers/video/console/fbcon.h
+drivers/video/console/softcursor.c
 drivers/video/display_timing.c
 drivers/video/fbdev/Kconfig
 drivers/video/fbdev/Makefile
@@ -5299,11 +5309,13 @@ include/drm/drm_global.h
 include/drm/drm_hashtab.h
 include/drm/drm_legacy.h
 include/drm/drm_mem_util.h
+include/drm/drm_mipi_dsi.h
 include/drm/drm_mm.h
 include/drm/drm_modes.h
 include/drm/drm_modeset_lock.h
 include/drm/drm_of.h
 include/drm/drm_os_linux.h
+include/drm/drm_panel.h
 include/drm/drm_plane_helper.h
 include/drm/drm_rect.h
 include/drm/drm_sysfs.h
@@ -5651,6 +5663,7 @@ include/linux/kref.h
 include/linux/ksm.h
 include/linux/kthread.h
 include/linux/ktime.h
+include/linux/l2tp.h
 include/linux/latencytop.h
 include/linux/lcm.h
 include/linux/leds.h
@@ -6502,6 +6515,7 @@ include/uapi/linux/kernel.h
 include/uapi/linux/kexec.h
 include/uapi/linux/keyboard.h
 include/uapi/linux/keyctl.h
+include/uapi/linux/l2tp.h
 include/uapi/linux/libc-compat.h
 include/uapi/linux/limits.h
 include/uapi/linux/lwtunnel.h
@@ -6930,6 +6944,9 @@ lib/flex_array.c
 lib/flex_proportions.c
 lib/fonts/Kconfig
 lib/fonts/Makefile
+lib/fonts/font_8x16.c
+lib/fonts/font_8x8.c
+lib/fonts/fonts.c
 lib/gcd.c
 lib/gen_crc32table.c
 lib/genalloc.c

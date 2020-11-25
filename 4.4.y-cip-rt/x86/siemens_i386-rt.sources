@@ -1472,8 +1472,6 @@ drivers/block/paride/ppc6lnx.c
 drivers/block/paride/pseudo.h
 drivers/block/paride/pt.c
 drivers/block/pktcdvd.c
-drivers/block/rbd.c
-drivers/block/rbd_types.h
 drivers/block/rsxx/Makefile
 drivers/block/rsxx/config.c
 drivers/block/rsxx/core.c
@@ -3165,7 +3163,6 @@ drivers/input/keyboard/qt1070.c
 drivers/input/keyboard/qt2160.c
 drivers/input/keyboard/samsung-keypad.c
 drivers/input/keyboard/stowaway.c
-drivers/input/keyboard/sunkbd.c
 drivers/input/keyboard/tca6416-keypad.c
 drivers/input/keyboard/tca8418_keypad.c
 drivers/input/keyboard/twl4030_keypad.c
@@ -8970,6 +8967,7 @@ include/linux/jump_label.h
 include/linux/jump_label_ratelimit.h
 include/linux/kaiser.h
 include/linux/kallsyms.h
+include/linux/kasan-checks.h
 include/linux/kasan.h
 include/linux/kbd_diacr.h
 include/linux/kbd_kern.h
@@ -9505,6 +9503,7 @@ include/linux/ppp_defs.h
 include/linux/pps-gpio.h
 include/linux/pps_kernel.h
 include/linux/pr.h
+include/linux/prandom.h
 include/linux/preempt.h
 include/linux/prefetch.h
 include/linux/printk.h
